@@ -8,7 +8,9 @@ const Content = (props) => {
     <main>
       <h1>Content page</h1>
       <Route exact path='/' component={Home} />
-      <Route path='/auth' component={Auth} />
+      <Route path='/auth' render={(renderProps) => (
+        <Auth handleAuth={props.handleAuth} {...renderProps} />
+      )} />
       <Route path='/profile' component={Profile} />
     </main>
   );
