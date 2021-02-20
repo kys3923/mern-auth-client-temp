@@ -12,15 +12,26 @@ function App() {
 
   const handleAuth = user => {
     console.log('handling Authentication ... ');
-    setCurrentUser(user);
-    setIsAuthenticated(true);
+    if(user) {
+      // add use stuff
+      setCurrentUser(user);
+      setIsAuthenticated(true);
+    } else {
+      // Clear it all out
+      setCurrentUser(null);
+      setIsAuthenticated(false);
+      localStorage.removeItem('jwtToke');
+    }
   }
 
   return (
     <Router>
       {/* TODO remove div, and add some styling */}
       <div className="App">
-        <Header currentUser={currentUser} />
+        <Header 
+          currentUser={currentUser} 
+          handleAuth={handleAuth} 
+        />
         <Content 
           currentUser={currentUser}
           isAuthenticated={isAuthenticated}
